@@ -9,6 +9,22 @@
 // 5. Use console.log(reverseCharacters(myVariableName)); to call the function and verify that it correctly reverses the characters in the string.
 // 6. Optional: Use method chaining to reduce the lines of code within the function.
 
+function reverseCharacters(text) {
+   let isNum = (typeof text === "number");
+   if (isNum) {
+    text = String(text);
+   }
+   let reversedText = text.split("").reverse().join("");
+   if (isNum) {
+    return Number(reversedText);
+   } else {
+    return reversedText;
+    }
+}
+
+let textSample = "Ellie";
+console.log(reverseCharacters(textSample));
+
 // Part Two: Reverse Digits
 
 // 1. Add an if statement to reverseCharacters to check the typeof the parameter.
@@ -16,6 +32,10 @@
 // 3. If typeof is ’number’, convert the parameter to a string, reverse the characters, then convert it back into a number.
 // 4. Return the reversed number.
 // 5. Be sure to print the result returned by the function to verify that your code works for both strings and numbers. Do this before moving on to the next exercise.
+
+let testNum = 1123132;
+console.log(reverseCharacters(textSample));
+console.log(reverseCharacters(testNum));
 
 // Part Three: Complete Reversal
 
@@ -26,9 +46,23 @@
 // 5. Return the final, reversed array.
 // 6. Be sure to print the results from each test case in order to verify your code.
 
+
+
 let arrayTest1 = ['apple', 'potato', 'Capitalized Words'];
 let arrayTest2 = [123, 8897, 42, 1168, 8675309];
 let arrayTest3 = ['hello', 'world', 123, 'orange'];
+
+function reverseArray(array) {
+    let result = [];
+    for (let i = array.length-1; i >= 0; i--) {
+        result.push(reverseCharacters(array[i]));
+    }
+    return result; 
+}
+
+console.log(reverseArray(arrayTest1));
+console.log(reverseArray(arrayTest2));
+console.log(reverseArray(arrayTest3));
 
 // Bonus Missions
 
@@ -37,10 +71,25 @@ let arrayTest3 = ['hello', 'world', 123, 'orange'];
 // 3. Retrieve only the first 3 characters from strings with lengths larger than 3.
 // 4. Use a template literal to return the phrase We put the '___' in '___'. Fill the first blank with the modified string, and fill the second blank with the original string.
 
+function getFunPhrase(string) {
+    let substring;
+    if (string.length <= 3) {
+        substring = string[string.length - 1];
+    } else {
+        substring = string.slice(0, 3);
+    }
+    return `We put the '${substring}' in '${string}'.`
+}
+
 // Test Function
 
 // 1. Outside of the function, define the variable str and initialize it with a string (e.g. 'Functions rock!').
 // 2. Call your function and print the returned phrase.
+
+let funString = "Functions rock!";
+let shortFunString = "hi";
+console.log(getFunPhrase(funString));
+console.log(getFunPhrase(shortFunString));
 
 // Area of rectangle equal to length x width
 
@@ -49,3 +98,9 @@ let arrayTest3 = ['hello', 'world', 123, 'orange'];
 // 3. Call your area function by passing in two arguments - the length and width.
 // 4. If only one argument is passed to the function, then the shape is a square. Modify your code to deal with this case.
 // 5. Use a template literal to print, “The area is ____ cm^2.”
+
+function getRectangleArea(length, width = length) {
+    return length * width;
+}
+console.log(`The area is ${getRectangleArea(5, 3)} cm^2.`);
+console.log(`The area is ${getRectangleArea(8)} cm^2.`);
